@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Photo Gallery{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <!-- Introduction Section -->
+    <section class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">Welcome to PhotoGallery</h1>
+        <p class="text-lg text-gray-600 mb-8">Explore amazing photos, portraits, and artworks! As the creator of this platform, I’m Kamau, and I run Ujumbe IT Company.</p>
+        <p class="text-lg text-gray-600 mb-4">At Ujumbe, we strive to create innovative digital solutions, and this photo gallery app is just one of our exciting projects!</p>
+        <a href="/profile/" class="bg-blue-600 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-500 transition duration-300">View Your Profile</a>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {% for photo in photos %}
+            <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                <img src="{{ photo.image.url }}" alt="{{ photo.title }}" class="w-full h-56 object-cover rounded-md mb-4">
+                <h3 class="text-xl font-semibold text-gray-800">{{ photo.title }}</h3>
+                <p class="text-gray-600">{{ photo.description }}</p>
+                <a href="{% url 'photo_detail' photo.id %}" class="text-blue-600 hover:text-blue-400 mt-2 inline-block">View Details</a>
+            </div>
+        {% endfor %}
+    </section>
+</div>
+{% endblock %}

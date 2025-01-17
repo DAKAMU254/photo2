@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static %} <!-- Add this line to load static files -->
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+    <div class="max-w-4xl mx-auto px-6 py-8">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden p-6">
+            <div class="flex items-center space-x-6 mb-6">
+                <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-gray-300">
+                    {% if user.userprofile.profile_picture %}
+                        <img src="{{ user.userprofile.profile_picture.url }}" alt="{{ user.username }}" class="w-full h-full object-cover">
+                    {% else %}
+                        <img src="{% static 'images/default_profile.png' %}" alt="Default Profile Picture" class="w-full h-full object-cover">
+                    {% endif %}
+                </div>
+                <div>
+                    <h1 class="text-3xl font-semibold text-gray-800">{{ user.username }}</h1>
+                    <p class="text-lg text-gray-600">{{ user.email }}</p>
+                </div>
+            </div>
+
+            <!-- Add the form to edit the profile information here -->
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="mt-4 bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700">Save Changes</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

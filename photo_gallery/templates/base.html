@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Photo Gallery{% endblock %}</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="text-3xl font-semibold tracking-tight hover:text-gray-300 transition duration-200">PhotoGallery</a>
+            <nav>
+                <ul class="flex space-x-8">
+                    <li><a href="/" class="text-lg hover:text-blue-300 transition duration-300">Home</a></li>
+                    <li><a href="/profile/" class="text-lg hover:text-blue-300 transition duration-300">Profile</a></li>
+
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout' %}" class="text-lg hover:text-blue-300 transition duration-300">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}" class="text-lg hover:text-blue-300 transition duration-300">Login</a></li>
+                        <li><a href="{% url 'register' %}" class="text-lg hover:text-blue-300 transition duration-300">Register</a></li> <!-- Register link -->
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-8 mt-16">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-lg">&copy; 2025 PhotoGallery. All Rights Reserved.</p>
+            <p class="text-sm mt-2">Built with love and Tailwind CSS</p>
+        </div>
+    </footer>
+
+</body>
+</html>

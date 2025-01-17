@@ -1,0 +1,24 @@
+<!-- photo_gallery.html -->
+{% extends 'base.html' %}
+
+{% block title %}My Photo Gallery{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-6 py-8">
+    <h2 class="text-2xl font-semibold mb-6">My Photo Gallery</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {% for photo in photos %}
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <img src="{{ photo.image.url }}" alt="{{ photo.title }}" class="w-full h-64 object-cover">
+            <div class="p-4">
+                <h3 class="text-lg font-semibold">{{ photo.title }}</h3>
+                <p class="text-sm text-gray-500">{{ photo.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="mt-6">
+        <a href="{% url 'upload_photo' %}" class="w-full bg-green-600 text-white py-2 rounded text-center hover:bg-green-700 transition">Upload New Photo</a>
+    </div>
+</div>
+{% endblock %}
