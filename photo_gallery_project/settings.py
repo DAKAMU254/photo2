@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+DATABASE_URL = 'postgresql://kama_sdte_user:NXf5hWCaJJQfIzXX2bFuWplCM4yyUpBC@dpg-ctucp83qf0us73f2rbg0-a.oregon-postgres.render.com/kama_sdte '
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
